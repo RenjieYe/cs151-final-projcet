@@ -6,26 +6,38 @@
 package cs151hw4ry;
 
 /**
+ * This class means Discover credit card.
  *
- * @author renjie
+ * @author renjie, Jing Zhao
  */
-public class Discover extends creditCard{
-    private String CreditCardNum;
-    private final String cardType = "Discover";
+public class Discover extends CreditCard {
+
+    /**
+     * Constructor.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     */
     public Discover(String creditCardNum) {
         super(creditCardNum);
         this.creditCardTpye = "Discover";
     }
-        
 
-    // Discover: First four digits are 6011. Length is 16 digits.
-    static boolean isDiscoverz(String CreditCardNum){
-        if (CreditCardNum==null || CreditCardNum.isEmpty()) {
+
+    /**
+     * Check if the credit card is Discover.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     * @return
+     *      true or false.
+     */
+    static boolean isDiscover(String CreditCardNum) {
+        if (CreditCardNum == null || CreditCardNum.isEmpty()) {
             return false;
         }
-        return (CreditCardNum.length()==16 && CreditCardNum.startsWith("6011"));
+        // Discover: First four digits are 6011. Length is 16 digits.
+        return (CreditCardNum.length() == 16 && CreditCardNum.startsWith("6011"));
     }
 
-
-    
 }

@@ -18,3 +18,4 @@ Cookies|0.99
 Water|0.00
 Soda|0.99
 Smoothie|1.19
+Ice cream|5.5
