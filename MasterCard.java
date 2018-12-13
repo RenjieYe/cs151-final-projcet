@@ -6,29 +6,43 @@
 package cs151hw4ry;
 
 /**
+ * This class means MasterCard credit card.
  *
- * @author renjie
+ * @author renjie, Jing Zhao
  */
-public class MasterCard extends creditCard {
-    private String CreditCardNum;
+public class MasterCard extends CreditCard {
+
+    /**
+     * Constructor.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     */
     public MasterCard(String creditCardNum) {
         super(creditCardNum);
         this.creditCardTpye = "MasterCard";
     }
-        
 
-    
-    //MasterCard: First digit is a 5, second digit is in range 1 through 5 inclusive. 
-    //Only valid lenght of number is 16 digits.
-     static boolean  isMasterCard(String CreditCardNum){
-        if (CreditCardNum==null || CreditCardNum.isEmpty()) {
+    /**
+     * Check if the credit card is MasterCard.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     * @return
+     *      true or false.
+     */
+    static boolean validate(String CreditCardNum) {
+        if (CreditCardNum == null || CreditCardNum.isEmpty()) {
             return false;
         }
-        if (CreditCardNum.length()==16 && CreditCardNum.charAt(0) == '5'&& CreditCardNum.charAt(1) >= '1' && CreditCardNum.charAt(1) <= '5')
+        // MasterCard: First digit is a 5, second digit is in range 1 through 5
+        // inclusive.
+        // Only valid length of number is 16 digits.
+        if (CreditCardNum.length() == 16 && CreditCardNum.charAt(0) == '5' && CreditCardNum.charAt(1) >= '1'
+                && CreditCardNum.charAt(1) <= '5')
             return true;
         return false;
-        
-    }
 
+    }
 
 }

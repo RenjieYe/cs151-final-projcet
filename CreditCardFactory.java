@@ -6,30 +6,31 @@
 package cs151hw4ry;
 
 /**
+ * This is the factory class to create a credit card instance.
  *
- * @author renjie
+ * @author renjie, Jing Zhao
  */
-public class CreditCardFactory extends creditCard{
+public class CreditCardFactory extends CreditCard {
+    /**
+     * Constructor.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     */
     public CreditCardFactory(String creditCardNum) {
         super(creditCardNum);
     }
-    
-    
-    static creditCard createCard(String CreditCardNum){
-      
-        if (VISA.isVISA(CreditCardNum) ){
+
+    static CreditCard createCard(String CreditCardNum) {
+        if (VISA.validate(CreditCardNum)) {
             return new VISA(CreditCardNum);
-        }
-        else if (Discover.isDiscoverz(CreditCardNum)){
+        } else if (Discover.validate(CreditCardNum)) {
             return new Discover(CreditCardNum);
-            }
-        else if (MasterCard.isMasterCard(CreditCardNum)){
+        } else if (MasterCard.validate(CreditCardNum)) {
             return new MasterCard(CreditCardNum);
-        }
-        else if (AmericanExpress.isAmericanExpress(CreditCardNum)){
+        } else if (AmericanExpress.validate(CreditCardNum)) {
             return new AmericanExpress(CreditCardNum);
-        }return null;
+        }
+        return null;
     }
-
-
 }

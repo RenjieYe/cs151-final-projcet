@@ -5,49 +5,52 @@
  */
 package cs151hw4ry;
 
-
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+
 import javax.swing.SwingUtilities;
 
-
 /**
+ * This is the application entry.
  *
- * @author renjie
+ * @author renjie, Jing Zhao.
  */
 public class CS151Hw4RY {
 
     /**
-     * @param args the command line arguments
+     * @param args
+     *            the command line arguments
      * @throws java.io.FileNotFoundException
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
      */
-    public static void main(String[] args) throws FileNotFoundException {
-//         ArrayList food = new ArrayList();//ReadFile will pass food names into this array list
-//         ArrayList price = new ArrayList();//ReadFile will pass food price into this array list
-    
-        ReadFileControler test =new ReadFileControler();
-        test.operFileReader();
-        
-        final ArrayList food = test.getfoodName();
-        final ArrayList price = test.getfoodPrice();
-        
-        //System.out.print(food);
-        
+    public static void main(String[] args) throws 
+            FileNotFoundException, 
+            NoSuchMethodException, 
+            SecurityException, 
+            IllegalAccessException, 
+            IllegalArgumentException, 
+            InvocationTargetException {
+        ReadFileController menu = new ReadFileController();
+        // Invoke the method using reflection.
+        Class<? extends ReadFileController> cls = menu.getClass();
+        Method readMenuMethod = cls.getDeclaredMethod("readMenu", 
+                String.class); 
+        readMenuMethod.invoke(menu, "menu.txt"); 
+
+        final List<String> food = menu.getfoodName();
+        final List<Double> price = menu.getfoodPrice();
+
         SwingUtilities.invokeLater(() -> {
-            View test1 = new View(food, price);
-            test1.createAndShowGUI();
-           
+            View view = new View(food, price);
+            view.createAndShowGUI();
         });
- 
-        
-     
-      
 
-        
     }
-    
-    
-    
-}
 
-    
+}

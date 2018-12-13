@@ -6,35 +6,40 @@
 package cs151hw4ry;
 
 /**
+ * This class means VISA credit card.
  *
- * @author renjie
+ * @author renjie, Jing Zhao
  */
-public class VISA extends creditCard{
-    private String CreditCardNum;
-    
-//    public VISA(String CreditCardNum){
-//        this.CreditCardNum =  CreditCardNum;
-//    }
+public class VISA extends CreditCard {
+
+    /**
+     * Constructor.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     */
     public VISA(String creditCardNum) {
         super(creditCardNum);
         this.creditCardTpye = "VISA";
     }
-    
-        
 
-    
-    //visa:  	First digit is a 4. Length is either 13 or 16 digits.
-    static boolean isVISA(String CreditCardNum){
-        if (CreditCardNum==null || CreditCardNum.isEmpty()) {
+    /**
+     * Check if the credit card is VISA.
+     * 
+     * @param creditCardNum
+     *      the credit card number.
+     * @return
+     *      true or false.
+     */
+    static boolean validate(String CreditCardNum) {
+        if (CreditCardNum == null || CreditCardNum.isEmpty()) {
             return false;
         }
-        if (CreditCardNum.charAt(0)=='4' && (CreditCardNum.length()==16 || CreditCardNum.length()==13)){
+        // visa: First digit is a 4. Length is either 13 or 16 digits.
+        if (CreditCardNum.charAt(0) == '4' && (CreditCardNum.length() == 16 || CreditCardNum.length() == 13)) {
             return true;
         }
         return false;
     }
 
-
-    
-        
-    }
+}
