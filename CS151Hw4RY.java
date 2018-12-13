@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
  *
  * @author renjie, Jing Zhao.
  */
-public class CS151Hw4RY {
+public class CS151Hw4RY implements Runnable{
 
     /**
      * @param args
@@ -50,7 +50,30 @@ public class CS151Hw4RY {
             View view = new View(food, price);
             view.createAndShowGUI();
         });
+        
+        runThread();
 
+    }
+    
+    @Override
+    public void run() {
+       
+        try {
+            System.out.println("thread "+ Thread.currentThread().getId() +" is running");
+        } catch (Exception e) {
+            System.out.println("exception while thread running");
+        }
+       
+    }
+   
+    //run the threads
+    public synchronized static void runThread() {
+        int n=8;
+        for(int i=0; i<8;i++) {
+            Thread obj = new Thread(new CS151Hw4RY());
+            obj.start();
+        }
+ 
     }
 
 }
